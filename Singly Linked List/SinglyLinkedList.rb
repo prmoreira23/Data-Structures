@@ -52,4 +52,27 @@ class SinglyLinkedList
 
     return false
   end
+
+  def traverse
+    node = @head
+    while node
+      yield node.value
+      node = node.next
+    end
+  end
+
+  def reverse_traversal
+    if @tail
+      current = @tail
+      while current != @head
+        prev = @head
+        while prev.next != current
+          prev = prev.next
+        end
+        yield current.value
+        current = prev
+      end
+      yield current.value
+    end
+  end
 end
