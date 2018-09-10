@@ -17,6 +17,10 @@ class BinarySearchTree
     contain(@root, value)
   end
 
+  def remove(value)
+    
+  end
+
   private
   def contain(root, value)
     return false unless root
