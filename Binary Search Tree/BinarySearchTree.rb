@@ -3,6 +3,7 @@ require_relative "Node"
 class BinarySearchTree
   def initialize
     @root = nil
+    @count = 0
   end
 
   def insert(value)
@@ -11,6 +12,7 @@ class BinarySearchTree
     else
       insert_node(@root, value)
     end
+    @count += 1
   end
 
   def contains(value)
@@ -18,10 +20,21 @@ class BinarySearchTree
   end
 
   def remove(value)
-    
+    node_to_remove = find_node(@root, value)
   end
 
   private
+  def find_node(root, value)
+    return nil unless root
+    if root.value == value
+      return root
+    elsif value < root.value
+      return find_node(root.left, value)
+    else
+      return find_node(root.right, value)
+    end
+  end
+
   def contain(root, value)
     return false unless root
     if root.value == value
