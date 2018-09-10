@@ -6,14 +6,29 @@ class BinarySearchTree
   end
 
   def insert(value)
-    unless root
+    unless @root
       @root = Node.new(value)
     else
       insert_node(@root, value)
     end
   end
 
+  def contains(value)
+    contain(@root, value)
+  end
+
   private
+  def contain(root, value)
+    return false unless root
+    if root.value == value
+      return true
+    elsif value < root.value
+      return contain(root.left, value)
+    else
+      return contain(root.right, value)
+    end
+  end
+
   def insert_node(current, value)
     if value < current.value # Left
       unless current.left
